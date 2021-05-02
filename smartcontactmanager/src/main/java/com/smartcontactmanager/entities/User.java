@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -16,7 +17,7 @@ public class User
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    
+    @NotNull(message = "Name field should not blank")
     @NotBlank(message = "Name field is required !!")
     @Size(min = 2, max = 20 , message = "Name should be between 2 - 20 characters !!")
     private String name;
