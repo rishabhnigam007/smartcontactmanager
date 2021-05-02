@@ -72,8 +72,6 @@ public class HomeController
 			System.out.println("Agreement "+agreement);
 			System.out.println("User "+user);
 			
-			User result = userRepository.save(user);
-			
 			//new user() for when register and hit submit button then form clean and ready for again register.
 			model.addAttribute("user", new User());
 			session.setAttribute("message", new Message("Successfully Registered !!", "alert-success"));
