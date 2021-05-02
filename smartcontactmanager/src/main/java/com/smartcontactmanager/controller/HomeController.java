@@ -2,7 +2,6 @@ package com.smartcontactmanager.controller;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,12 +51,6 @@ public class HomeController
 		// if Binding result is declare in the last after httpsession then changes not reflected in page so paste it in after user model attribute
 		try 
 		{
-			if(!agreement)
-			{
-				System.out.println("you have not agreed the terms and condition !!");
-				throw new Exception("You have not agreed the terms and condition !!");
-			}
-			
 			if(result1.hasErrors())
 			{
 				System.out.println("Error "+result1.toString());
@@ -65,6 +58,11 @@ public class HomeController
 				return "signup";
 			}
 			
+			if(!agreement)
+			{
+				System.out.println("you have not agreed the terms and condition !!");
+				throw new Exception("You have not agreed the terms and condition !!");
+			}			
 			
 			user.setRole("Role User");
 			user.setEnabled(true);
@@ -75,6 +73,7 @@ public class HomeController
 			//new user() for when register and hit submit button then form clean and ready for again register.
 			model.addAttribute("user", new User());
 			session.setAttribute("message", new Message("Successfully Registered !!", "alert-success"));
+			userRepository.save(user);
 			return "signup";
 		} 
 		catch (Exception e) 
