@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.smartcontactmanager.dao.UserRepository;
 import com.smartcontactmanager.entities.User;
 import com.smartcontactmanager.helper.Message;
@@ -67,13 +66,11 @@ public class HomeController
 				model.addAttribute("user", user);
 				return "signup";
 			}
-			
 			if(!agreement)
 			{
 				System.out.println("you have not agreed the terms and condition !!");
 				throw new Exception("You have not agreed the terms and condition !!");
 			}			
-			
 			user.setRole("Role User");
 			user.setEnabled(true);
 			user.setImageUrl("default.png");
@@ -83,7 +80,6 @@ public class HomeController
 			//new user() for when register and hit submit button then form clean and ready for again register.
 			model.addAttribute("user", new User());
 			session.setAttribute("message", new Message("Successfully Registered !!", "alert-success"));
-			
 			return "signup";
 		} 
 		catch (Exception e) 
@@ -92,8 +88,6 @@ public class HomeController
 			model.addAttribute("user",user);
 			session.setAttribute("message", new  Message("Something went wrong !! "+e.getMessage(), "alert-danger"));
 			return "signup";
-		}
-		
+		}	
 	}
-	
 }

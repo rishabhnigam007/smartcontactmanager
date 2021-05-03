@@ -2,9 +2,7 @@ package com.smartcontactmanager.entities;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.*;
-import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -26,6 +24,7 @@ public class User
     @Email(regexp = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")
     private String email;
     @NotBlank(message = "Password field is required !!")
+    @Size(min = 2, max = 20 , message = "Password should be between 2 - 20 characters !!")
     private String password;
     
     private String role;
