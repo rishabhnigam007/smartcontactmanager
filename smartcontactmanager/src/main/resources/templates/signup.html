@@ -25,7 +25,7 @@
 						</div>
 						<h1 class="text-center">Register Here !!</h1>
 						
-						<form novalidate="novalidate" action="" th:action="@{/do_register}" method="post" th:object="${user}">
+						<form action="" th:action="@{/do_register}" method="post" th:object="${user}">
 						
 							<div class="form-group">
 								<label for="name_field">Your Name</label> 
@@ -51,12 +51,16 @@
 									name="email"
 									type="text" 
 									class="form-control" 
+									th:classappend="${#fields.hasErrors('email')?'is-invalid':''}"
 									id="email_field"
 									aria-describedby="emailHelp" 
 									placeholder="Enter your email here"
 									required
 									th:value="${user.email}"
 									/>
+									
+									<div class="invalid-feedback" th:each="e :${#fields.errors('email')}" th:text="${e}">
+      								</div>
 							</div>
 							
 							<div class="form-group">
@@ -65,14 +69,30 @@
 									name="password"
 									type="password" 
 									class="form-control" 
+									th:classappend="${#fields.hasErrors('password')?'is-invalid':''}"
 									id="password_field"
 									aria-describedby="emailHelp" 
 									placeholder="Enter your password here"
-									required/>
+									required
+									th:value="${user.password}"
+									/>
+									
+									<div class="invalid-feedback" th:each="e :${#fields.errors('password')}" th:text="${e}">
+      								</div>
 							</div>
 							
 							<div class="form-group">
-								<textarea name="about" th:text="${user.about}" placeholder="Enter something yourself" rows="7" class="form-control"></textarea>
+								<textarea 
+									name="about" 
+									th:value="${user.about}" 
+									th:text="${user.about}" 
+									placeholder="Enter something yourself" 
+									rows="7" 
+									class="form-control"
+									th:classappend="${#fields.hasErrors('about')?'is-invalid':''}">
+									</textarea>
+									<div class="invalid-feedback" th:each="e :${#fields.errors('about')}" th:text="${e}">
+      								</div>
 							</div>
 							
 							<div class="form-group form-check">
@@ -81,7 +101,7 @@
 							class="form-check-input"
 							id="agreement"
 							/>
-							<label for="agreement">Accept terms and condition</label>
+							<label class="text-center" for="agreement">Accept terms and condition</label>
 							</div>
 												
 							<div class="container text-center">

@@ -29,9 +29,9 @@ public class User
     private String password;
     
     private String role;
-    @AssertTrue(message = "Must agree terms and condition !!")
+//    @AssertTrue(message = "Must agree terms and condition !!")
     private boolean enabled;
-    @NotBlank(message = "ImageUrl field is required !!")
+//    @NotBlank(message = "ImageUrl field is required !!")
     private String imageUrl;
     @Column(length = 500)
     @NotBlank(message = "About field is required !!")

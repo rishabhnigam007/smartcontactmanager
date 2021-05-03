@@ -79,11 +79,11 @@ public class HomeController
 			user.setImageUrl("default.png");
 			System.out.println("Agreement "+agreement);
 			System.out.println("User "+user);
-			
+			userRepository.save(user);
 			//new user() for when register and hit submit button then form clean and ready for again register.
 			model.addAttribute("user", new User());
 			session.setAttribute("message", new Message("Successfully Registered !!", "alert-success"));
-			userRepository.save(user);
+			
 			return "signup";
 		} 
 		catch (Exception e) 
