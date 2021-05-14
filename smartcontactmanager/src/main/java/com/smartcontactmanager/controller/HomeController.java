@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,12 +21,8 @@ import com.smartcontactmanager.helper.Message;
 @Controller
 public class HomeController 
 {
-	@InitBinder
-	public void InitBinder(WebDataBinder dataBinder) 
-	{
-		StringTrimmerEditor stringTrimmerEditor=new StringTrimmerEditor(true);
-		dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
-	}
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -74,6 +71,8 @@ public class HomeController
 			user.setRole("Role User");
 			user.setEnabled(true);
 			user.setImageUrl("default.png");
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
+			
 			System.out.println("Agreement "+agreement);
 			System.out.println("User "+user);
 			userRepository.save(user);

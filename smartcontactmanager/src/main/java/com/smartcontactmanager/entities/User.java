@@ -24,7 +24,7 @@ public class User
     @Email(regexp = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")
     private String email;
     @NotBlank(message = "Password field is required !!")
-    @Size(min = 2, max = 20 , message = "Password should be between 2 - 20 characters !!")
+    @Size(min = 2, message = "Password should be atleast 2 characters !!")
     private String password;
     
     private String role;
