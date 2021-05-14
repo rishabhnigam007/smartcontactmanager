@@ -2,12 +2,12 @@ package com.smartcontactmanager.config;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import com.smartcontactmanager.entities.User;
 
+@SuppressWarnings("serial")
 public class CustomUserDetails implements UserDetails 
 {
 	private User user;
