@@ -6,6 +6,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.Principal;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
@@ -20,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.smartcontactmanager.dao.UserRepository;
 import com.smartcontactmanager.entities.Contact;
 import com.smartcontactmanager.entities.User;
+import com.smartcontactmanager.helper.Message;
 
 @Controller
 @RequestMapping("/user")
@@ -63,7 +67,7 @@ public class UserController
 	
 	// Processing add contact form
 	@PostMapping("/process-contact")
-	public String processContact(@ModelAttribute Contact contact,@RequestParam ("profileImage") MultipartFile file,Principal principle)
+	public String processContact(@ModelAttribute Contact contact,@RequestParam ("profileImage") MultipartFile file,Principal principle,HttpSession session)
 	{
 		try 
 		{
@@ -98,11 +102,17 @@ public class UserController
 			System.out.println("Data "+contact);
 		
 			System.out.println("Added to database");
+			
+			// message success
+			session.setAttribute("message", new Message("Your Contact is added !! add more","success"));
+			
 		}
 		catch (Exception e) 
 		{
 			System.out.println("Error "+e.getMessage());
 			e.printStackTrace();
+			// error message
+			session.setAttribute("message", new Message("Something went wrong !!","danger"));
 		}
 		
 		return "normal/add_contact_form";

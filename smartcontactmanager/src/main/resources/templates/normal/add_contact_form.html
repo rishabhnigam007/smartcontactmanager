@@ -35,7 +35,7 @@
 									
 									</div>
 									
-									<input type="text" id="firstName" name="name" placeholder="Enter Name here" class="form-control"/>
+									<input required type="text" id="firstName" name="name" placeholder="Enter Name here" class="form-control"/>
 									
 								</div>
 								
@@ -52,7 +52,7 @@
 									
 									</div>
 									
-									<input type="text" id="secondName" name="secondName" placeholder="Enter Nick Name here" class="form-control"/>
+									<input required type="text" id="secondName" name="secondName" placeholder="Enter Nick Name here" class="form-control"/>
 									
 								</div>
 								
@@ -69,7 +69,7 @@
 									
 									</div>
 									
-									<input type="number" id="phone" name="phone" placeholder="Enter Phone Number here" class="form-control"/>
+									<input required type="number" id="phone" name="phone" placeholder="Enter Phone Number here" class="form-control"/>
 									
 								</div>
 								
@@ -88,7 +88,7 @@
 									
 									</div>
 									
-									<input type="email" id="email" name="email" placeholder="Enter Email here" class="form-control"/>
+									<input required type="email" id="email" name="email" placeholder="Enter Email here" class="form-control"/>
 									
 								</div>
 								
@@ -105,14 +105,14 @@
 									
 									</div>
 									
-									<input type="text" id="work" name="work" placeholder="Enter Work here" class="form-control"/>
+									<input required type="text" id="work" name="work" placeholder="Enter Work here" class="form-control"/>
 									
 								</div>
 								
 								<!-- Contact Discription Field -->
 								<div class="form-group mt-3">
 								
-									<textarea name="description" id="description" rows="10" class="form-control" placeholder="Enter Contact Discription"></textarea>
+									<textarea name="description" id="mytextarea" rows="10" class="form-control" placeholder="Enter Contact Discription"></textarea>
 									
 								</div>
 								
@@ -136,6 +136,15 @@
 				</div>
 			</div>
 		</div>
+		
+		<!-- we use Tiny text editor -->
+		<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+		    <script>
+      tinymce.init({
+        selector: '#mytextarea'
+      });
+    </script>
+		
 	</section>
 </body>
 </html>
