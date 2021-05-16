@@ -28,21 +28,21 @@ public class HomeController
 	@RequestMapping("/")
 	public String home(Model model)
 	{
-		model.addAttribute("Title", "Home - Smart Contact Manager");
+		model.addAttribute("title", "Home - Smart Contact Manager");
 		return "home";
 	}
 	
 	@RequestMapping("/about")
 	public String about(Model model)
 	{
-		model.addAttribute("Title", "About - Smart Contact Manager");
+		model.addAttribute("title", "About Page");
 		return "about";
 	}
 	
 	@RequestMapping("/signup")
 	public String signup(Model model)
 	{
-		model.addAttribute("Title", "SignUp - Smart Contact Manager");
+		model.addAttribute("title", "Registeration Page");
 		model.addAttribute("user",new User());
 		return "signup";
 	}
@@ -92,7 +92,7 @@ public class HomeController
 	@GetMapping("/signin")
 	public String customLogin(Model model)
 	{
-		model.addAttribute("Title", "Login Page");
+		model.addAttribute("title", "Login Page");
 		return "login";
 	}
 }

@@ -77,6 +77,7 @@ body {
 	height: 100%;
 	position: fixed;
 	padding-top: 45px;
+	z-index: 9;
 }
 
 .sidebar a{

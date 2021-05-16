@@ -32,10 +32,10 @@ public class Contact
 	private String work;
 	@NotBlank(message = "Phone field is required !!")
 	private String phone;
-	@NotBlank(message = "ImageUrl field is required !!")
+//	@NotBlank(message = "ImageUrl field is required !!")
 	private String image;
 	@Column(length = 1600)
-	@NotBlank(message = "Description field is required !!")
+//	@NotBlank(message = "Description field is required !!")
 	private String description;
 	
 	@ManyToOne
@@ -110,11 +110,13 @@ public class Contact
 	public Contact() {
 		super();
 	}
+	
 	@Override
 	public String toString() {
 		return "Contact [cId=" + cId + ", name=" + name + ", secondName=" + secondName + ", email=" + email + ", work="
 				+ work + ", phone=" + phone + ", image=" + image + ", description=" + description + "]";
 	}
+	
 	
 	
 }
