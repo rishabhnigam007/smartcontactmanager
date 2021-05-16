@@ -12,6 +12,14 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
+	
+<!-- search : font awesome icons 5 cdn and goto cdnjs.com website and copy link and paste here -->
+<!-- then we are able to use icons -->
+<!-- goto first website www.fontawesome.com and search icons accordingly -->
+<link rel="stylesheet" 
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" 
+	integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" 
+	crossorigin="anonymous" />
 
 <link rel="stylesheet" th:href="@{/css/style.css}" />
 <title th:text="${title}">Base Html</title>
@@ -31,18 +39,41 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav ml-auto text-uppercase">
-				<li class="nav-item active"><a class="nav-link" th:href="@{/}"
-					href="#">Home</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">About</a></li>
-				<li class="nav-item"><a class="nav-link" href="#" th:href="@{/signin}">Login</a></li>
-				<li class="nav-item"><a class="nav-link" th:href="@{/signup/}"
-					href="#">SignUp</a></li>
+				<li class="nav-item active"><a class="nav-link"	href="#">Home</a></li>
+				
+				<li class="nav-item"><a class="nav-link" href="#"><span th:text="${user.name}"></span></a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/logout}"
+					href="#">Logout</a></li>
 			</ul>
 		</div>
 	</nav>
 
-	<div th:replace="${content}"></div>
-
+	<!-- This is sidebar -->
+	<div class="sidebar">
+	
+		<span onclick="toggleSidebar()" class="crossbtn">&times;</span>
+	
+	<!-- paste icons html here for showing icons -->
+	
+		<a href="#" class="item"><i class="fas fa-home"></i> Home</a>
+		<a href="#" class="item"><i class="fas fa-id-card-alt"></i> View Contacts</a>
+		<a href="#" class="item"><i class="fas fa-pencil-alt"></i> Add Contact</a>
+		<a href="#" class="item"><i class="fas fa-user-circle"></i> Your Profile</a>
+		<a href="#" class="item"><i class="fas fa-cogs"></i> Settings</a>
+		<a href="#" class="item"><i class="fas fa-sign-out-alt"></i> Logout</a>
+		<div class="divider"></div>
+	</div>
+	<!-- end of sidebar -->
+	
+	<!-- content area -->
+	<div class="content">
+	
+		<i onclick="toggleSidebar()" class="fas fa-bars m-3"></i>
+	
+		<div th:replace="${content}"></div>
+	</div>
+	<!-- end of content -->
+	
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous"></script>
