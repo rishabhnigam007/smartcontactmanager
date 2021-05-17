@@ -11,10 +11,10 @@
 			<div class="card-body">	
 				<h1 class="text-center"><i class="far fa-address-card"></i></h1>			
 				<h1 class="text-center">Your Contacts</h1>
-				<div class="container-fluid mt-1">
+				<div class="container-fluid mt-3">
 					<div class="row">
-						<div class="col-md-8 offset-md-2">
-							<table class="table table-striped table-dark">
+						<div class="col-md-8 offset-md-2 table-responsive">
+							<table class="table table-striped table-hover">
 								  <thead>
 								    <tr>
 								      <th scope="col">#ID</th>
@@ -26,17 +26,47 @@
 								  </thead>
 								  <tbody>
 								    <tr th:each="c : ${contacts}">
+								    
 								      <th scope="row" th:text="${'USER  '+c.cId}"></th>
-								      <td th:text="${c.name}"></td>
-								      <td th:text="${c.email}"></td>
+								      
+								      <td >
+								      	<img src="" class="my_profile_picture" th:src="@{'/image/'+${c.image}}" alt="profile_photo" />
+								      	<span th:text="${c.name}"></span>
+								      </td>
+								      
+								      <td >
+								      	<a href="#" th:href="@{'/user/'+${c.cId}+'/contact'}"><span th:text="${c.email}"></span></a>
+								      </td>
+								      
 								      <td th:text="${' '+c.phone}" class="fas fa-phone-alt"></td>
+								      
 								      <td>
-								      <button class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</button>
-								      <button class="btn btn-primary btn-sm"><i class="far fa-edit"></i> Update</button>
+								      <a th:onclick="|deleteContact(${c.cId})|" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</a>
+								      <a th:href="@{'/user/update/'+${c.cId}}" class="btn btn-primary btn-sm"><i class="far fa-edit"></i> Update</a>
 								      </td>
 								    </tr>								
 								  </tbody>
 							</table>
+							
+							<!-- pagination part  -->
+							<nav aria-label="...">
+		  						<ul class="pagination justify-content-center">
+		  						
+		    						<li th:if="${currentPage!=0}" class="page-item">
+								      	<a th:href="@{'/user/show-contacts/'+${currentPage-1}}" class="page-link" href="#" tabindex="-1">Previous</a>
+		    						</li>
+		    								    						
+		    						<li th:classappend="${currentPage==i-1?'active':''}" th:each="i :${#numbers.sequence(1,totalPages)}" class="page-item">
+		      							<a th:href="@{'/user/show-contacts/'+${i-1}}" class="page-link" href="#"><span th:text="${i}">(current)</span></a>
+								    </li>
+								    		    						
+		    						<li th:if="${currentPage+1!=totalPages}" class="page-item">
+		      							<a th:href="@{'/user/show-contacts/'+${currentPage+1}}" class="page-link" href="#">Next</a>
+		    						</li>
+		    						
+								</ul>
+							</nav>
+							
 						</div>
 					</div>
 				</div>

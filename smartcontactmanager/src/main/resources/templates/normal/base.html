@@ -56,7 +56,7 @@
 	<!-- paste icons html here for showing icons -->
 	
 		<a href="#" th:href="@{/user/index}" class="item"><i class="fas fa-home"></i> Home</a>
-		<a href="#" th:href="@{/user/show-contacts}" class="item"><i class="fas fa-id-card-alt"></i> View Contacts</a>
+		<a href="#" th:href="@{/user/show-contacts/0}" class="item"><i class="fas fa-id-card-alt"></i> View Contacts</a>
 		<a href="#" th:href="@{/user/add-contact}" class="item"><i class="fas fa-pencil-alt"></i> Add Contact</a>
 		<a href="#" class="item"><i class="fas fa-user-circle"></i> Your Profile</a>
 		<a href="#" class="item"><i class="fas fa-cogs"></i> Settings</a>
@@ -93,6 +93,34 @@
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous"></script>
 
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
+	<!-- this is sweet alert which mean alert box appear whenever we deleted the contact -->
+	
+	<script>
+		
+	function deleteContact(cid)
+	{
+		swal({
+			  title: "Are you sure?",
+			  text: "You want to deleted this contact..",
+			  icon: "warning",
+			  buttons: true,
+			  dangerMode: true,
+			})
+			.then((willDelete) => {
+			  if (willDelete) {
+			    
+				  window.location="/user/delete/"+cid;
+				  
+			  } else {
+			    swal("Your contact is safe !!");
+			  }
+			});
+	}
+	
+	</script>
+	
 	<script th:src="@{/js/script.js}"></script>
 </body>
 </html>
