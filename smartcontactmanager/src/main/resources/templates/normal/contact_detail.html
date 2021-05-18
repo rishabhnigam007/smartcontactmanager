@@ -39,15 +39,19 @@
 						      <td><span th:text="${contact.work}"></span></td>						   
 						    </tr>				    
 						  </tbody>
-					</table>	
-					
+					</table>
+										
 					<div class="description mt-3 table-dark">
 						<b><th:block th:utext="${contact.description}"></th:block></b>
 					</div>
 							
 					<div class="container">
 						<button th:onclick="|deleteContact(${contact.cId})|" class="btn btn-danger btn-sm btn-block"><i class="fas fa-trash-alt"></i> Delete</button>
-						<button class="btn btn-primary btn-sm btn-block"><i class="far fa-edit"></i> Update</button>
+						
+						<form method="post" class="mt-2" th:action="@{'/user/update-contact/'+${contact.cId}}">
+							<button type="submit" class="btn btn-block btn-primary btn-sm">
+									<i class="far fa-edit"></i> Update</button>
+						</form>
 					</div>
 								
 				</div>
