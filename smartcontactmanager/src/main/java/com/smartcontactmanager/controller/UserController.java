@@ -55,7 +55,7 @@ public class UserController
 	}
 	
 	// Dashboard home
-	@RequestMapping("/index")
+	@RequestMapping(value =  "/index" ,method = RequestMethod.GET)
 	public String dashboard(Model model,Principal principle)
 	{	
 		model.addAttribute("title", "User Dashboard");
@@ -75,7 +75,7 @@ public class UserController
 	
 	// Processing add contact form
 	@PostMapping("/process-contact")
-	public String processContact(@ModelAttribute Contact contact,@RequestParam ("profileImage") MultipartFile file,Principal principle,HttpSession session)
+	public String processContact(@ModelAttribute Contact contact,@RequestParam ("profileImage") MultipartFile file,Principal principle,HttpSession session,Model model)
 	{
 		try 
 		{
@@ -123,7 +123,7 @@ public class UserController
 			// error message
 			session.setAttribute("message", new Message("Something went wrong !!","danger"));
 		}
-		
+		model.addAttribute("title", "Your Contact added !!");
 		return "normal/add_contact_form";
 	}
 	
@@ -135,7 +135,7 @@ public class UserController
 	@GetMapping("/show-contacts/{page}")
 	public String showContacts(@PathVariable("page") Integer page,Model model,Principal principal)
 	{
-		model.addAttribute("title", "Show User Contacts");
+		model.addAttribute("title", "Your Contacts");
 		
 		// contact list find for logged in user
 		String userName=principal.getName();
@@ -159,19 +159,23 @@ public class UserController
 	public String showContactDetail(@PathVariable("cId") Integer cId,Model model,Principal principal)
 	{
 		System.out.println("CID "+cId);
-		
-		Optional<Contact> contactOptional=this.contactRepository.findById(cId);
-		Contact contact=contactOptional.get();
-		
-		String userName=principal.getName();
-		User user=this.userRepository.getUserByUserName(userName);
-		
-		if(user.getId()==contact.getUser().getId())
+		try
 		{
-			model.addAttribute("contact", contact);
+			Optional<Contact> contactOptional=this.contactRepository.findById(cId);
+			Contact contact=contactOptional.get();
+			
+			String userName=principal.getName();
+			User user=this.userRepository.getUserByUserName(userName);
+			
+			if(user.getId()==contact.getUser().getId())
+			{
+				model.addAttribute("contact", contact);
+			}
+			model.addAttribute("title", "Your Contact : "+contact.getName());
 		}
-		else
+		catch (Exception e)
 		{
+			model.addAttribute("title", "Contact Not Found");
 			return "normal/contact_not_found";
 		}
 		return "normal/contact_detail";
@@ -269,6 +273,7 @@ public class UserController
 		System.out.println("Contact ID "+contact.getcId());
 		
 //		return "redirect:/user/show-contacts/0";
+		model.addAttribute("title", "Update Contact");
 		return "redirect:/user/"+contact.getcId()+"/contact";
 	}
 	
@@ -276,10 +281,17 @@ public class UserController
 	@GetMapping("/profile")
 	public String yourProfile(Model model)
 	{
+		model.addAttribute("title", "Your Profile");
 		return "normal/profile";
 	}
 	
-	
+	// open Setting handler
+	@GetMapping("/settings")
+	public String openSettings(Model model)
+	{
+		model.addAttribute("title", "Settings");
+		return "normal/settings";
+	}
 	
 	
 }

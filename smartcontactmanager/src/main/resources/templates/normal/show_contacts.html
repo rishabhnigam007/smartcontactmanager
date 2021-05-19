@@ -3,14 +3,18 @@
 	th:replace="normal/base::Layout(~{::section})">
 <head>
 <meta charset="ISO-8859-1">
-<title>User Dashboard</title>
+<title>Show Contacts</title>
 </head>
 <body>
 	<section>
 	
-		<div class="card mr-3 ml-3">
+		<!-- <div class="card mr-3 ml-3"> -->
+		<div class="container">
 		
-		<div class="card-body-fluid mr-3 ml-3">
+		<!-- <div class="card-body-fluid mr-3 ml-3"> -->
+		<div class="card">
+		
+		<div class="card-body">
 			
 		<h1 class="text-center"><i class="far fa-address-card"></i></h1>			
 				<h1 class="text-center">Your Contacts</h1>
@@ -24,15 +28,11 @@
 						
 						<!-- Result goes here -->
 						
-						<h1>This is result</h1>
 						
 					</div>
 				
 				</div>
 				
-				<!-- <div class="container-fluid mt-1">
-					<div class="row">
-						<div class="col-md-10 offset-md-1 table-responsive text-center"> -->
 						<div class="container-fluid table-responsive">
 							<table class="table mt-1 table-striped table-hover">
 								  <thead>
@@ -70,7 +70,7 @@
 								    </tr>								
 								  </tbody>
 							</table>
-							</div>
+						</div>
 							<!-- pagination part  -->
 							<nav aria-label="...">
 		  						<ul class="pagination justify-content-center">
@@ -89,12 +89,25 @@
 		    						
 								</ul>
 							</nav>
-							
-					<!-- 	</div>
 					</div>
-				</div> -->
 			</div>
 		</div>
+		
+		<script>
+		
+		/* alert('This is home page')	 */
+				
+		$(document).ready(() => {
+			$('.item').removeClass('active');
+			$('#contacts-link').addClass('active');
+			/* $('#home-link').addClass('active');
+			$('#profile-link').addClass('active');
+			$('#add-link').addClass('active');
+			$('#settings-link').addClass('active'); */
+		});
+		
+		</script>
+		
 	</section>
 </body>
 </html>
