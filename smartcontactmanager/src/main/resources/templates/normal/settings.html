@@ -20,15 +20,15 @@
 							
 		<h1 class="text-center">Change Password</h1>
 		
-		<form action="" method="post">
+		<form action="" th:action="@{/user/change-password}" method="post">
 		
 		<!-- old password -->
 		<div class="form-group">
-			<input required type="text" class="form-control" placeholder="Enter Old Password" />
+			<input name="oldPassword" required type="text" class="form-control" placeholder="Enter Old Password" />
 		</div>
 		<!-- new password -->
 		<div class="form-group">
-			<input required type="text" class="form-control" placeholder="Enter New Password" />
+			<input name="newPassword" required type="text" class="form-control" placeholder="Enter New Password" />
 		</div>
 		
 		<div class="container text-center">
