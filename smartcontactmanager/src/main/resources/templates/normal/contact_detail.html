@@ -52,7 +52,7 @@
 						<button th:onclick="|deleteContact(${contact.cId})|" class="btn btn-danger btn-sm btn-block"><i class="fas fa-trash-alt"></i> Delete</button>
 						
 						<form method="post" class="mt-2" th:action="@{'/user/update-contact/'+${contact.cId}}">
-							<button type="submit" class="btn btn-block btn-primary btn-sm">
+							<button type="submit" class="btn btn-block btn-warning btn-sm">
 									<i class="far fa-edit"></i> Update</button>
 						</form>
 					</div>

@@ -61,9 +61,9 @@
 								      <td th:text="${' '+c.phone}" class="fas fa-phone-alt"></td>
 								      
 								      <td>
-								      <a th:onclick="|deleteContact(${c.cId})|" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</a>
+								      <a th:onclick="|deleteContact(${c.cId})|" class="btn btn-dark btn-sm text-light"><i class="fas fa-trash-alt"></i> Delete</a>
 								      <form method="post" class="mt-2" th:action="@{'/user/update-contact/'+${c.cId}}">
-								     	 <button type="submit" class="btn btn-primary btn-sm">
+								     	 <button type="submit" class="btn btn-warning btn-sm">
 								     	 			<i class="far fa-edit"></i> Update</button>
 								      </form>
 								      </td>
