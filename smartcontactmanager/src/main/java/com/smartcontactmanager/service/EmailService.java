@@ -44,7 +44,7 @@ public class EmailService
 		// so many port number are available for mail just google it but 465 is good for all..
 		properties.put("mail.smtp.port", "465");
 		properties.put("mail.smtp.ssl.enable", "true");
-		properties.put("mail.smtp.auth", "trur");
+		properties.put("mail.smtp.auth", "true");
 
 		// Step 1: to get the session object ..
 		Session session=Session.getInstance(properties, new Authenticator() {
@@ -71,7 +71,8 @@ public class EmailService
 			m.setSubject(subject);
 			
 			//adding text to message
-			m.setText(message);
+//			m.setText(message);
+			m.setContent(message, "text/html");
 			
 			//send
 			
@@ -84,6 +85,7 @@ public class EmailService
 		catch (Exception e)
 		{
 			e.printStackTrace();
+//			System.out.println("Messsage "+e.getMessage());
 		}
 		return f;
 	}
